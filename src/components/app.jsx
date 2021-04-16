@@ -21,6 +21,8 @@ class App extends React.Component {
         alcohol: null,
         ingredient: null,
         isAlcoholic: true,
+        list: [],
+        selected: null,
       },
       breweries: {
         location: {
@@ -28,8 +30,10 @@ class App extends React.Component {
           state: null,
           zipcode: 0
         },
+        keyword: null,
         type: null,
-        list: []
+        list: [],
+        selected: null
       }
     };
     this.setView = this.setView.bind(this);
@@ -40,14 +44,7 @@ class App extends React.Component {
     this.recipeApiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
   }
 
-  setView(name, params) {
-    this.setState({
-      view: {
-        name: name,
-        params: params
-      }
-    });
-  }
+  // Fetch API requests for BREWERY INFO
 
   getBreweriesByCityState(city, state) {
     fetch(`${this.breweryApiUrl}?by_city=${city}&by_state=${state}`)
@@ -68,28 +65,94 @@ class App extends React.Component {
   getBreweriesByPostal(postal) {
     fetch(`${this.breweryApiUrl}?by_postal=${postal}`)
       .then(response => response.json())
-      .then(breweries => this.setState({
+      .then(breweries => this.setState(
+        {
           breweries: {
             location: { zipcode: postal },
             list: breweries
           },
           view: { name: 'list-breweries', params: {} }
-        }))
+        }
+      ))
       .catch(error => console.error(error));
+  }
+
+  findBreweriesByName(name) {
+    fetch(`${this.breweryApiUrl}?by_name=${name}`)
+      .then(response => response.json())
+      .then(breweries => this.setState(
+          {
+            breweries: { keyword: name },
+            view: { name: 'list-breweries', params: {} }
+          }
+      ))
+      .catch(error => console.error(error));
+  }
+
+  // Fetch API calls for RECIPE INFO
+
+  getRecipesByName(name) {
+    fetch(`${this.recipeApiUrl}?s=${name}`)
+      .then(response => response.json())
+      .then(recipes => console.log(recipes))
+      .catch(error => console.error(error));
+  }
+
+  getRecipesByAlcohol() {
+    fetch(`${this.recipeApiUrl}?`)
+  }
+  // Methods related to VIEW setting
+
+  setView(name, params) {
+    this.setState({
+      view: {
+        name: name,
+        params: params
+      }
+    });
   }
 
   determineView(view) {
     switch (view) {
       case 'homepage':
-        return <Homepage setView={this.setView} />
+        return
+        <Homepage
+          setView={this.setView}
+        />;
       case 'search-breweries':
-        return <BreweryForm />
+        return
+        <BreweryForm
+          setView={this.setView}
+        />;
       case 'search-recipes':
-        return <RecipeForm />
+        return
+        <RecipeForm
+          setView={this.setView}
+        />;
       case 'list-breweries':
         return
+        <BreweryList
+          setView={this.setView}
+          breweries={this.state.breweries.list}
+        />
       case 'list-recipes':
-        return 
+        return
+        <RecipeList
+          setView={this.setView}
+          recipes={this.state.recipes.list}
+        />;
+      case 'brewery-details':
+        return
+        <BreweryDetails
+          setView={this.setView}
+          brewerySelected={this.state.breweries.selected}
+        />;
+      case 'recipe-details':
+        return
+        <RecipeDetails
+          setView={this.setView}
+          recipeSelected={this.state.recipes.selected}
+        />;
     }
   }
 
