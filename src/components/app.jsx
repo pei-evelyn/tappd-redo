@@ -1,6 +1,13 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer-nav';
+import Homepage from './homepage';
+import BreweryForm from './brewery-form';
+import BreweryList from './brewery-list';
+import BreweryDetails from './brewery-details';
+import RecipeForm from './recipe-form';
+import RecipeList from './recipe-list';
+import RecipeDetails from './recipe-details';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,14 +17,27 @@ class App extends React.Component {
         name: 'homepage',
         params: {}
       },
-      alcohol: null,
-      location: {
-        city: null,
-        state: null
+      recipes: {
+        alcohol: null,
+        ingredient: null,
+        isAlcoholic: true,
       },
+      breweries: {
+        location: {
+          city: null,
+          state: null,
+          zipcode: 0
+        },
+        type: null,
+        list: []
+      }
     };
     this.setView = this.setView.bind(this);
     this.determineView = this.determineView.bind(this);
+    this.getBreweriesByCityState = this.getBreweriesByCityState.bind(this);
+    this.getBreweriesByPostal = this.getBreweriesByPostal.bind(this);
+    this.breweryApiUrl = 'https://api.openbrewerydb.org/breweries';
+    this.recipeApiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
   }
 
   setView(name, params) {
@@ -29,51 +49,54 @@ class App extends React.Component {
     });
   }
 
-  determineView() {
-    let body = null;
+  getBreweriesByCityState(city, state) {
+    fetch(`${this.breweryApiUrl}?by_city=${city}&by_state=${state}`)
+      .then(response => response.json())
+      .then(breweries => {
+        console.log(breweries);
+        this.setState({
+          breweries: {
+            location: { zipcode: postal },
+            list: breweries
+          },
+          view: { name: 'list-breweries', params: {} }
+        })
+      })
+      .catch(error => console.error(error));
+  }
 
-    switch (this.state.view.name) {
+  getBreweriesByPostal(postal) {
+    fetch(`${this.breweryApiUrl}?by_postal=${postal}`)
+      .then(response => response.json())
+      .then(breweries => this.setState({
+          breweries: {
+            location: { zipcode: postal },
+            list: breweries
+          },
+          view: { name: 'list-breweries', params: {} }
+        }))
+      .catch(error => console.error(error));
+  }
+
+  determineView(view) {
+    switch (view) {
       case 'homepage':
-        body = (
-          <>
-            <h1>Let's grab a drink.</h1>
-            <div className="button-container">
-              <button className="">STAY IN</button>
-              <button className="">GO OUT</button>
-            </div>
-          </>
-        );
-        break;
-      // case 'search-breweries':
-      //   body = (
-
-      //   );
-      //   break;
-      // case 'search-recipes':
-      //   body = (
-
-      //   );
-      //   break;
-      // case 'list-breweries':
-      //   body = (
-
-      //   );
-      //   break;
-      // case 'list-recipes':
-      //   body = (
-
-      //   );
-      //   break;
+        return <Homepage setView={this.setView} />
+      case 'search-breweries':
+        return <BreweryForm />
+      case 'search-recipes':
+        return <RecipeForm />
+      case 'list-breweries':
+        return
+      case 'list-recipes':
+        return 
     }
-
-    return body;
   }
 
   render() {
-    const bodyContent = this.determineView();
-
+    const bodyContent = this.determineView(this.state.view.name);
     return (
-      <div className={`${this.state.view.name} container`}>
+      <div className={`${this.state.view.name} content-container`}>
         <Header />
         {bodyContent}
       </div>

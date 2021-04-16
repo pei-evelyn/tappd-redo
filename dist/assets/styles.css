@@ -14,12 +14,14 @@ li {
 button {
   background-color:#e4e3e3;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   font-size: 1.2rem;
+  margin-bottom: 1rem;
   padding: 0.5rem 2rem;
+  width: 20rem;
 }
 
-.container {
+.content-container {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -28,7 +30,9 @@ button {
 }
 
 .button-container {
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .heading {
