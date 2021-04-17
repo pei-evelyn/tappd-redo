@@ -12,7 +12,7 @@ li {
   list-style: none;
 }
 
-button {
+button, .button {
   background-color: #e4e3e3;
   border: none;
   border-radius: 0.6rem;
@@ -92,7 +92,7 @@ button {
   text-align: center;
 }
 
-.homepage {
+/* .homepage {
   background-image: linear-gradient(#ffffff99, #ffffff33), url('../images/home-bg.jpg');
 }
 
@@ -110,4 +110,4 @@ button {
 
 .list-recipes {
   background-image: linear-gradient( rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.42)), url('../images/recipes-bg.jpg');
-}
+} */

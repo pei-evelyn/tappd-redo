@@ -48,6 +48,8 @@ class App extends React.Component {
   // Fetch API requests for BREWERY INFO
 
   getBreweriesByCityState(city, state) {
+    
+
     fetch(`${this.breweryApiUrl}?by_city=${city}&by_state=${state}`)
       .then(response => response.json())
       .then(breweries => {

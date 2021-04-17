@@ -1,4 +1,5 @@
 import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 class BreweryForm extends React.Component {
   constructor(props) {
@@ -7,19 +8,21 @@ class BreweryForm extends React.Component {
       city: '',
       state: '',
       postal: '',
-      name: ''
+      name: '',
+      isValid: false
     };
     this.stateOptions = [
       'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
-      'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa'
+      'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
       'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
       'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
       'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
-      'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota,
+      'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
       'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
       'Wisconsin', 'Wyoming'
     ];
     this.handleChange = this.handleChange.bind(this);
+    this.checkFormInputs = this.checkFormInputs.bind(this);
   }
 
   handleChange(event) {
@@ -30,7 +33,16 @@ class BreweryForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    // this.checkFormInputs();
     console.log(event)
+  }
+
+  checkFormInputs() {
+    if (this.state.city || this.state.state) {
+      return isNaN(parseInt(this.state.city));
+    }
+
+    if (this.state.)
   }
 
   render() {
@@ -38,20 +50,20 @@ class BreweryForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="city-input">
-            <label htmlFor="city">CITY</label>
+            <label htmlFor="city">ENTER CITY (OPTIONAL)</label>
             <input
               type="text"
-              className=""
+              className="meow"
               id="city"
               value={this.state.city}
               onChange={this.handleChange}
             />
           </div>
           <div className="state-input">
-            <label htmlFor="state">STATE</label>
+            <label htmlFor="state">ENTER STATE (OPTIONAL)</label>
             <input
               type="text"
-              className=""
+              className="meow"
               id="state"
               value={this.state.state}
               onChange={this.handleChange}
@@ -59,13 +71,20 @@ class BreweryForm extends React.Component {
           </div>
           <h3>OR</h3>
           <div className="postal-input">
-            <label htmlFor="postal">POSTAL CODE</label>
+            <label htmlFor="postal">ENTER POSTAL CODE</label>
             <input
               type="number"
-              className=""
+              className="meow"
               id="postal"
               value={this.state.postal}
               onChange={this.handleChange}
+            />
+          </div>
+          <div className="submit-input">
+            <input
+              type="submit"
+              className="button"
+              value="search"
             />
           </div>
         </form>
