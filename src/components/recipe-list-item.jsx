@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RecipeListItem(props) {
+const RecipeListItem = props => {
   return 'RecipeListItem'
 }
 

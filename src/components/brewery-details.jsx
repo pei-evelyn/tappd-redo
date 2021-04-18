@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BreweryDetails(props) {
+const BreweryDetails = props => {
   return 'brewlyfe detail';
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Homepage(props) {
+const Homepage = props => {
   return (
     <div>
       <h1 className="">Let's grab a drink.</h1>

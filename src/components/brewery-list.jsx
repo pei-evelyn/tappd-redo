@@ -1,8 +1,10 @@
 import React from 'react';
 import BreweryListItem from './brewery-list-item';
 
-function BreweryList(props) {
-  return 'brewerylist'
+const BreweryList = props => {
+  return (
+
+  );
 }
 
 export default BreweryList;

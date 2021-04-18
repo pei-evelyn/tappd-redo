@@ -1,6 +1,6 @@
 import React from 'react';
 
-function StartingPage(props) {
+const StartingPage = props => {
   return (
     <div className="content">
       <div className="logo-container">

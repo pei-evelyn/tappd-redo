@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeListItem from './recipe-list-item';
 
-function RecipeList(props) {
+const RecipeList = props => {
   return 'Recipelist'
 }
 
