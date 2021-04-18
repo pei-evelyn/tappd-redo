@@ -22,7 +22,7 @@ class BreweryForm extends React.Component {
       'Wisconsin', 'Wyoming'
     ];
     this.handleChange = this.handleChange.bind(this);
-    this.checkFormInputs = this.checkFormInputs.bind(this);
+    // this.checkFormInputs = this.checkFormInputs.bind(this);
   }
 
   handleChange(event) {
@@ -37,13 +37,13 @@ class BreweryForm extends React.Component {
     console.log(event)
   }
 
-  checkFormInputs() {
-    if (this.state.city || this.state.state) {
-      return isNaN(parseInt(this.state.city));
-    }
+  // checkFormInputs() {
+  //   if (this.state.city || this.state.state) {
+  //     return isNaN(parseInt(this.state.city));
+  //   }
 
-    if (this.state.)
-  }
+  //   if (this.state.)
+  // }
 
   render() {
     return (
