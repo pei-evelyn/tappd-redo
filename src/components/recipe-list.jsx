@@ -74,7 +74,6 @@ class RecipeList extends React.Component {
       .then(response => response.json())
       .then(recipe => {
         console.log(recipe.drinks[0])
-        // recipe.drinks[0]
         this.setState(state => {
           return {
           displayedDrinks: state.displayedDrinks.concat(recipe.drinks[0])
@@ -95,7 +94,7 @@ class RecipeList extends React.Component {
 
     return (
       <div className="recipe-list-container">
-        <h1>{this.props.recipeData.alcoholType} Recipes</h1>
+        <h1>{(this.state.formData.isNonAlcoholic ? 'Non-Alcoholic' : this.state.formData.alcoholType)} Recipes</h1>
         {recipes}
       </div>
     )
