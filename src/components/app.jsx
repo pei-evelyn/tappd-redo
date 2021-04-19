@@ -149,7 +149,7 @@ class App extends React.Component {
       case 'recipe-details':
         content = <RecipeDetails
           setView={this.setView}
-          recipeDetails={this.state.view.params}
+          recipe={this.state.view.params}
         />;
         break;
     }
