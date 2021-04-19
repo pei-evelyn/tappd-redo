@@ -9,13 +9,21 @@ const RecipeDetails = props => {
   const ingr5 = `${recipe.strMeasure5} ${recipe.strIngredient5}`;
   const ingr6 = `${recipe.strMeasure6} ${recipe.strIngredient6}`;
   const ingr7 = `${recipe.strMeasure7} ${recipe.strIngredient7}`;
+  const ingr8 = `${recipe.strMeasure8} ${recipe.strIngredient8}`;
 
-  const ingredients = [ingr1, ingr2, ingr3, ingr4, ingr5, ingr6, ingr7];
+  const ingredients = [ingr1, ingr2, ingr3, ingr4, ingr5, ingr6, ingr7, ingr8];
 
-  ingredients.forEach(ingredient => {
-    if (ingredient === 'null null') {
-      
+  for (let i = ingredients.length - 1; i >=0; i--) {
+    console.log(ingredients[i])
+    if (ingredients[i] === 'null null') {
+      ingredients.splice(i, 1);
+    } else {
+      ingredients[i] = ingredients[i].replace('null', '');
     }
+  }
+
+  const ingredientsEl = ingredients.map(ingr => {
+    return <li className="ingredient" key={ingr}>{ingr}</li>
   })
 
   return (
@@ -24,7 +32,13 @@ const RecipeDetails = props => {
       <img src={recipe.strDrinkThumb} alt={recipe.strDrink} />
       <div className="ingredients-container">
         <h3>Ingredients</h3>
-        ul
+        <ul>
+          {ingredientsEl}
+        </ul>
+      </div>
+      <div className="directions-container">
+        <h3>Directions</h3>
+        <p>{recipe.strInstructions}</p>
       </div>
     </div>
   )
