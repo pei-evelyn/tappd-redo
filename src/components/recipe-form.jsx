@@ -2,6 +2,23 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const RecipeForm = props => {
+  const alcoholTypes = [
+    'Vodka',
+    'Rum',
+    'Brandy',
+    'Gin',
+    'Tequila',
+    'Scotch',
+    'Bourbon',
+    'Amaretto',
+    'Vermouth',
+    'Champagne'
+  ];
+
+  const alcoholOptions = alcoholTypes.map(alcohol =>
+    <option value={alcohol} key={alcohol}>{alcohol}</option>
+  );
+
   return (
     <div>
       <h1 className="search-recipes-heading">Search Recipes</h1>
@@ -9,29 +26,24 @@ const RecipeForm = props => {
         <Formik
           initialValues={{
             alcoholType: '',
-            drinkName: '',
-            isAlcoholic: true
+            isNonAlcoholic: false
           }}
           onSubmit={(values) => {
-            console.log(values);
-            props.setView({
-              recipes: {
-                alcoholType: values.alcoholType,
-                drinkName: values.drinkName,
-                isAlcoholic: values.isAlcoholic
-              }
-            })
+            console.log(values)
+            props.getRecipeIds(values);
           }}
         >
           <Form>
-            <label htmlFor="isAlcoholic">Non-Alcoholic</label>
-            <Field type="checkbox" name="isAlcoholic" />
+            <label htmlFor="isAlcoholic">Non-Alcoholic?</label>
+            <Field type="checkbox" name="isNonAlcoholic" />
+
+            <h3>OR</h3>
 
             <label htmlFor="alcoholType">Alcohol Type</label>
-            <Field id="alcoholType" name="alcoholType" placeholder="Vodka" />
-
-            <label htmlFor="drinkName">Drink Name</label>
-            <Field id="drinkName" name="drinkName" placeholder="Moscow Mule" />
+            <Field as="select" name="alcoholType" id="alcoholType">
+              <option value="" disabled>Select one</option>
+              {alcoholOptions}
+            </Field>
 
             <button type="submit">Search</button>
           </Form>

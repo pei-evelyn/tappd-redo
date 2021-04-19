@@ -48,6 +48,26 @@ class BreweryForm extends React.Component {
   render() {
     return (
       <div>
+        <Formik
+          initialValues={{
+            city: '',
+            state: '',
+            postal: '',
+            name: '',
+          }}
+          onSubmit={(values) => {
+            console.log(values);
+            this.props.setView({
+              view: {
+                name: 'brewery-list'
+              }
+            })
+          }
+
+          }
+        >
+
+        </Formik>
         <form onSubmit={this.handleSubmit}>
           <div className="city-input">
             <label htmlFor="city">ENTER CITY (OPTIONAL)</label>

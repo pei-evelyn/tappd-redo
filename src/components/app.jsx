@@ -20,9 +20,9 @@ class App extends React.Component {
       },
       recipes: {
         alcoholType: null,
-        drinkName: null,
-        isAlcoholic: true,
-        list: [],
+        isNonAlcoholic: false,
+        idList: [],
+        recipeList: [],
         selected: null,
       },
       breweries: {
@@ -41,15 +41,15 @@ class App extends React.Component {
     this.determineView = this.determineView.bind(this);
     this.getBreweriesByCityState = this.getBreweriesByCityState.bind(this);
     this.getBreweriesByPostal = this.getBreweriesByPostal.bind(this);
+    this.getRecipeUrl = this.getRecipeUrl.bind(this);
+    this.getRecipeIds = this.getRecipeIds.bind(this);
     this.breweryApiUrl = 'https://api.openbrewerydb.org/breweries';
-    this.recipeApiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
+    this.recipeApiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
   }
 
   // Fetch API requests for BREWERY INFO
 
   getBreweriesByCityState(city, state) {
-
-
     fetch(`${this.breweryApiUrl}?by_city=${city}&by_state=${state}`)
       .then(response => response.json())
       .then(breweries => {
@@ -94,19 +94,42 @@ class App extends React.Component {
 
   // Fetch API calls for RECIPE INFO
 
-  getRecipesByName(name) {
-    fetch(`${this.recipeApiUrl}?s=${name}`)
+  getRecipeIds(values) {
+    const url = this.getRecipeUrl(values);
+    console.log(url)
+    fetch(url)
       .then(response => response.json())
-      .then(recipes => console.log(recipes))
+      .then(ids => {
+        console.log(ids)
+        this.setState({
+          recipes: {
+            alcoholType: values.alcoholType,
+            isNonAlcoholic: values.isNonAlcoholic,
+            idList: ids
+          }
+        })
+      })
       .catch(error => console.error(error));
   }
 
-  getRecipesByAlcohol(alcohol) {
-    fetch(`${this.recipeApiUrl}?i=${alcohol}`)
+  getRecipesWithIds(ids) {
+    fetch(`${this.recipeApiUrl}?i=${alcoholType}`)
       .then(response => response.json())
       .then(recipes => console.log(recipes))
       .catch(error => console.error(errors));
   }
+
+  getRecipeUrl(info) {
+    let url = `${this.recipeApiUrl}`;
+
+    if (info.isNonAlcoholic) {
+      url += '?a=Non_Alcoholic';
+    } else {
+      url +=  `?i=${info.alcoholType}`;
+    }
+    return url;
+  }
+
   // Methods related to VIEW setting
 
   setView(name, params) {
@@ -139,7 +162,7 @@ class App extends React.Component {
         break;
       case 'search-recipes':
         content = <RecipeForm
-          setView={this.setView}
+          getRecipeIds={this.getRecipeIds}
         />;
         break;
       case 'list-breweries':
