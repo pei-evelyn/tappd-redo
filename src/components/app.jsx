@@ -17,80 +17,10 @@ class App extends React.Component {
       view: {
         name: 'starting-page',
         params: {}
-      },
-      recipes: {
-        alcoholType: null,
-        isNonAlcoholic: false,
-        // drinkData: {
-        //   fullIdList: [],
-        //   displayedRecipes: [],
-        //   currentPage: 1
-        // },
-        // selected: null,
-      },
-      breweries: {
-        location: {
-          city: null,
-          state: null,
-          zipcode: 0
-        },
-        keyword: null,
-        type: null,
-        list: [],
-        selected: null
       }
     };
     this.setView = this.setView.bind(this);
     this.determineView = this.determineView.bind(this);
-    this.getBreweriesByCityState = this.getBreweriesByCityState.bind(this);
-    this.getBreweriesByPostal = this.getBreweriesByPostal.bind(this);
-    this.breweryApiUrl = 'https://api.openbrewerydb.org/breweries';
-
-  }
-
-  // Fetch API requests for BREWERY INFO
-
-  getBreweriesByCityState(city, state) {
-    fetch(`${this.breweryApiUrl}?by_city=${city}&by_state=${state}`)
-      .then(response => response.json())
-      .then(breweries => {
-        console.log(breweries);
-        this.setState({
-          breweries: {
-            location: { zipcode: postal },
-            list: breweries
-          },
-          view: { name: 'list-breweries', params: {} }
-        })
-      })
-      .catch(error => console.error(error));
-  }
-
-  getBreweriesByPostal(postal) {
-    fetch(`${this.breweryApiUrl}?by_postal=${postal}`)
-      .then(response => response.json())
-      .then(breweries => this.setState(
-        {
-          breweries: {
-            location: { zipcode: postal },
-            list: breweries
-          },
-          view: { name: 'list-breweries', params: {} }
-        }
-      ))
-      .catch(error => console.error(error));
-  }
-
-  findBreweriesByName(name) {
-    fetch(`${this.breweryApiUrl}?by_name=${name}`)
-      .then(response => response.json())
-      .then(breweries => this.setState(
-          {
-            breweries: { keyword: name },
-            view: { name: 'list-breweries', params: {} }
-          }
-      ))
-      .catch(error => console.error(error));
   }
 
   // Methods related to VIEW setting
@@ -131,7 +61,7 @@ class App extends React.Component {
       case 'list-breweries':
         content = <BreweryList
           setView={this.setView}
-          breweries={this.state.breweries.list}
+          breweryData={this.state.view.params}
         />;
         break;
       case 'list-recipes':
@@ -149,7 +79,7 @@ class App extends React.Component {
       case 'recipe-details':
         content = <RecipeDetails
           setView={this.setView}
-          recipeDetails={this.state.view.params}
+          recipe={this.state.view.params}
         />;
         break;
     }

@@ -45,7 +45,7 @@ const RecipeForm = props => {
               {alcoholOptions}
             </Field>
 
-            <button type="submit">Search</button>
+            <button type="submit">Search Recipes</button>
           </Form>
         </Formik>
       </div>

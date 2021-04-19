@@ -21,21 +21,21 @@ class BreweryForm extends React.Component {
       'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
       'Wisconsin', 'Wyoming'
     ];
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     // this.checkFormInputs = this.checkFormInputs.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
+  // handleChange(event) {
+  //   this.setState({
+  //     [event.target.id]: event.target.value
+  //   });
+  // }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    // this.checkFormInputs();
-    console.log(event)
-  }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   // this.checkFormInputs();
+  //   console.log(event)
+  // }
 
   // checkFormInputs() {
   //   if (this.state.city || this.state.state) {
@@ -46,8 +46,12 @@ class BreweryForm extends React.Component {
   // }
 
   render() {
+    const states = this.stateOptions.map(state => {
+      return <option value={state} key={state}>{state}</option>
+    });
+
     return (
-      <div>
+      <div className="brewery-form-container">
         <Formik
           initialValues={{
             city: '',
@@ -57,57 +61,27 @@ class BreweryForm extends React.Component {
           }}
           onSubmit={(values) => {
             console.log(values);
-            this.props.setView({
-              view: {
-                name: 'brewery-list'
-              }
-            })
-          }
+            this.props.setView('list-breweries', values)
+            }}
+          >
+          <Form>
+            <label htmlFor="city">Enter City</label>
+            <Field type="text" name="city" />
 
-          }
-        >
+            <label htmlFor="state">Select State</label>
+            <Field as="select" name="state" id="state">
+              <option value="" disabled>Select one</option>
+              {states}
+            </Field>
 
+            <h3>OR</h3>
+
+            <label htmlFor="postal">Enter Postal Code</label>
+            <Field type="number" placeholder="ie. 92620" name="postal" />
+
+            <button type="submit">Search Breweries</button>
+          </Form>
         </Formik>
-        <form onSubmit={this.handleSubmit}>
-          <div className="city-input">
-            <label htmlFor="city">ENTER CITY (OPTIONAL)</label>
-            <input
-              type="text"
-              className="meow"
-              id="city"
-              value={this.state.city}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="state-input">
-            <label htmlFor="state">ENTER STATE (OPTIONAL)</label>
-            <input
-              type="text"
-              className="meow"
-              id="state"
-              value={this.state.state}
-              onChange={this.handleChange}
-            />
-          </div>
-          <h3>OR</h3>
-          <div className="postal-input">
-            <label htmlFor="postal">ENTER POSTAL CODE</label>
-            <input
-              type="number"
-              className="meow"
-              id="postal"
-              value={this.state.postal}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="submit-input">
-            <input
-              type="submit"
-              className="button"
-              value="search"
-            />
-          </div>
-        </form>
       </div>
     )
   }
