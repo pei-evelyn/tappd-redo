@@ -1,12 +1,7 @@
 import React from 'react';
 
-class FooterNav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
+const FooterNav = props => {
+  return 'footer'
 }
 
 export default FooterNav;

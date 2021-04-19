@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Header(props) {
+const Header = props => {
   return (
     <header className="heading">
       Tappd
     </header>
-  )
+  );
 }
 
 export default Header;

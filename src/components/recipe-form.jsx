@@ -1,58 +1,56 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-class RecipeForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      alcohol: '',
-      drinkName: '',
-      isAlcoholic: true
-    }
-  }
+const RecipeForm = props => {
+  const alcoholTypes = [
+    'Vodka',
+    'Rum',
+    'Brandy',
+    'Gin',
+    'Tequila',
+    'Scotch',
+    'Bourbon',
+    'Amaretto',
+    'Vermouth',
+    'Champagne'
+  ];
 
-  handleChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
-  }
+  const alcoholOptions = alcoholTypes.map(alcohol =>
+    <option value={alcohol} key={alcohol}>{alcohol}</option>
+  );
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
+  return (
+    <div>
+      <h1 className="search-recipes-heading">Search Recipes</h1>
+      <div className="recipe-form">
+        <Formik
+          initialValues={{
+            alcoholType: '',
+            isNonAlcoholic: false
+          }}
+          onSubmit={(values) => {
+            console.log(values)
+            props.setView('list-recipes', values);
+          }}
+        >
+          <Form>
+            <label htmlFor="isAlcoholic">Non-Alcoholic?</label>
+            <Field type="checkbox" name="isNonAlcoholic" />
 
-  render() {
-    return (
-      <div>
-        <h1>Search Recipes</h1>
-        <div className="recipe-form">
-          <Formik
-            initialValues={{
-              alcoholType: '',
-              drinkName: '',
-              isAlcoholic: true
-            }}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
-          >
-            <Form>
-              <label htmlFor="isAlcoholic">Non-Alcoholic</label>
-              <Field type="checkbox" name="isAlcoholic" />
-              
-              <label htmlFor="alcoholType">Alcohol Type</label>
-              <Field id="alcoholType" name="alcoholType" placeholder="Vodka" />
+            <h3>OR</h3>
 
-              <label htmlFor="drinkName">Drink Name</label>
-              <Field id="drinkName" name="drinkName" placeholder="Moscow Mule" />
+            <label htmlFor="alcoholType">Alcohol Type</label>
+            <Field as="select" name="alcoholType" id="alcoholType">
+              <option value="" disabled>Select one</option>
+              {alcoholOptions}
+            </Field>
 
-              <button type="submit">Search</button>
-            </Form>
-          </Formik>
-        </div>
+            <button type="submit">Search</button>
+          </Form>
+        </Formik>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default RecipeForm;
