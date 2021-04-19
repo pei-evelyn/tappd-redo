@@ -67,7 +67,7 @@ class BreweryList extends React.Component {
 
   render() {
     const breweriesEl = this.state.breweryList.map(brewery => {
-      return <BreweryListItem key={brewery.id} breweryInfo={brewery} />
+      return <BreweryListItem key={brewery.id} breweryInfo={brewery} setView={this.props.setView} />
     })
 
     return (
