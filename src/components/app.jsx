@@ -21,9 +21,12 @@ class App extends React.Component {
       recipes: {
         alcoholType: null,
         isNonAlcoholic: false,
-        idList: [],
-        recipeList: [],
-        selected: null,
+        // drinkData: {
+        //   fullIdList: [],
+        //   displayedRecipes: [],
+        //   currentPage: 1
+        // },
+        // selected: null,
       },
       breweries: {
         location: {
@@ -41,10 +44,8 @@ class App extends React.Component {
     this.determineView = this.determineView.bind(this);
     this.getBreweriesByCityState = this.getBreweriesByCityState.bind(this);
     this.getBreweriesByPostal = this.getBreweriesByPostal.bind(this);
-    this.getRecipeUrl = this.getRecipeUrl.bind(this);
-    this.getRecipeIds = this.getRecipeIds.bind(this);
     this.breweryApiUrl = 'https://api.openbrewerydb.org/breweries';
-    this.recipeApiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
+
   }
 
   // Fetch API requests for BREWERY INFO
@@ -92,44 +93,6 @@ class App extends React.Component {
       .catch(error => console.error(error));
   }
 
-  // Fetch API calls for RECIPE INFO
-
-  getRecipeIds(values) {
-    const url = this.getRecipeUrl(values);
-    console.log(url)
-    fetch(url)
-      .then(response => response.json())
-      .then(ids => {
-        console.log(ids)
-        this.setState({
-          recipes: {
-            alcoholType: values.alcoholType,
-            isNonAlcoholic: values.isNonAlcoholic,
-            idList: ids
-          }
-        })
-      })
-      .catch(error => console.error(error));
-  }
-
-  getRecipesWithIds(ids) {
-    fetch(`${this.recipeApiUrl}?i=${alcoholType}`)
-      .then(response => response.json())
-      .then(recipes => console.log(recipes))
-      .catch(error => console.error(errors));
-  }
-
-  getRecipeUrl(info) {
-    let url = `${this.recipeApiUrl}`;
-
-    if (info.isNonAlcoholic) {
-      url += '?a=Non_Alcoholic';
-    } else {
-      url +=  `?i=${info.alcoholType}`;
-    }
-    return url;
-  }
-
   // Methods related to VIEW setting
 
   setView(name, params) {
@@ -162,7 +125,7 @@ class App extends React.Component {
         break;
       case 'search-recipes':
         content = <RecipeForm
-          getRecipeIds={this.getRecipeIds}
+          setView={this.setView}
         />;
         break;
       case 'list-breweries':
@@ -174,7 +137,7 @@ class App extends React.Component {
       case 'list-recipes':
         content = <RecipeList
           setView={this.setView}
-          recipes={this.state.recipes.list}
+          recipeData={this.state.view.params}
         />;
         break;
       case 'brewery-details':
@@ -186,7 +149,7 @@ class App extends React.Component {
       case 'recipe-details':
         content = <RecipeDetails
           setView={this.setView}
-          recipeSelected={this.state.recipes.selected}
+          recipeDetails={this.state.view.params}
         />;
         break;
     }

@@ -30,7 +30,7 @@ const RecipeForm = props => {
           }}
           onSubmit={(values) => {
             console.log(values)
-            props.getRecipeIds(values);
+            props.setView('list-recipes', values);
           }}
         >
           <Form>
