@@ -1,5 +1,6 @@
 import React from 'react';
 import BreweryListItem from './brewery-list-item';
+import { Container, Typography, Box } from '@material-ui/core';
 
 class BreweryList extends React.Component {
   constructor(props) {
@@ -71,10 +72,14 @@ class BreweryList extends React.Component {
     })
 
     return (
-      <div className="brewery-list-container">
-        <h1>Breweries in {this.state.formData.city}</h1>
-        {breweriesEl}
-      </div>
+      <Container maxWidth="sm">
+        <Typography variant="h2" gutterBottom>
+          {this.state.formData.city || this.state.formData.postal} Breweries
+        </Typography>
+        <Box>
+          {breweriesEl}
+        </Box>
+      </Container>
     )
   }
 }

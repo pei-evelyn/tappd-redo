@@ -4,8 +4,9 @@
 }
 
 body {
+  background-color: #202020;
   color: #414141;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 li {
@@ -85,9 +86,9 @@ button, .button {
 }
 
 .heading {
-  font-family: 'Lobster', cursive;
+  /* font-family: 'Lobster', cursive; */
   font-size: 1.9rem;
-  font-weight: 500;
+  /* font-weight: 500; */
   padding: 0.5rem;
   text-align: center;
 }
@@ -106,7 +107,8 @@ button, .button {
   height: 4rem;
   object-fit: cover;
 }
-/* .homepage {
+
+.homepage {
   background-image: linear-gradient(#ffffff99, #ffffff33), url('../images/home-bg.jpg');
 }
 
@@ -124,4 +126,4 @@ button, .button {
 
 .list-recipes {
   background-image: linear-gradient( rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.42)), url('../images/recipes-bg.jpg');
-} */
+}

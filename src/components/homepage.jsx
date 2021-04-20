@@ -1,24 +1,31 @@
 import React from 'react';
+import { Typography, Box, Button, Container } from '@material-ui/core';
 
 const Homepage = props => {
   return (
-    <div>
-      <h1 className="">Let's grab a drink.</h1>
-      <div className="button-container">
-        <button
-          className="btn btn-lg btn-secondary"
+    <Container maxWidth="lg">
+      <Typography variant="h1">
+        Let's grab a drink.
+      </Typography>
+      <Box>
+        <Button
           onClick={() => props.setView('search-recipes', {})}
+          variant="contained"
+          color="primary"
+          size="medium"
         >
-          STAY IN
-        </button>
-        <button
-          className="btn btn-lg btn-secondary"
+          Stay In
+        </Button>
+        <Button
           onClick={() => props.setView('search-breweries', {})}
+          variant="contained"
+          color="primary"
+          size="medium"
         >
-          GO OUT
-        </button>
-      </div>
-    </div>
+          Go Out
+        </Button>
+      </Box>
+    </Container>
   );
 }
 

@@ -10,6 +10,8 @@ import RecipeForm from './recipe-form';
 import RecipeList from './recipe-list';
 import RecipeDetails from './recipe-details';
 
+import { Container, Typography, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -88,12 +90,12 @@ class App extends React.Component {
 
   render() {
     const bodyContent = this.determineView(this.state.view.name);
-    console.log(bodyContent)
+
     return (
-      <div className={`${this.state.view.name} content-container`}>
+      <Container maxWidth="lg" className={`${this.state.view.name} content-container`}>
         <Header />
         {bodyContent}
-      </div>
+      </Container>
     )
   }
 }

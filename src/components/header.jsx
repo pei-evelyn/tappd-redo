@@ -1,10 +1,11 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 
 const Header = props => {
   return (
-    <header className="heading">
-      Tappd
-    </header>
+    <Typography variant="h6" className="heading">
+      TAPPD
+    </Typography>
   );
 }
 
