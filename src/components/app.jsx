@@ -73,7 +73,7 @@ class App extends React.Component {
       case 'brewery-details':
         content = <BreweryDetails
           setView={this.setView}
-          brewerySelected={this.state.breweries.selected}
+          brewery={this.state.view.params}
         />;
         break;
       case 'recipe-details':

@@ -14,79 +14,68 @@ class BreweryList extends React.Component {
       currentPage: 1
     };
     this.getBreweries = this.getBreweries.bind(this);
-    // this.getBreweriesByPostal = this.getBreweriesByPostal.bind(this);
     this.breweryApiUrl = 'https://api.openbrewerydb.org/breweries';
-
   }
 
   componentDidMount() {
-    // console.log(this.props.breweryData.values)
     this.getBreweries(this.props.breweryData);
   }
 
-  formatDataInputs(data) {
-    for (const input in data) {
-      // console.log(input)
-      // console.log(data[input])
-      data[input].replace(' ', '_');
-    }
-    console.log(data)
-    return data;
-  }
-
   getBreweries(values) {
-    const formatedValues = this.formatDataInputs(values);
+    let url = `${this.breweryApiUrl}?page=${this.state.currentPage}`;
 
-    let url = `${this.breweryApiUrl}?page=${this.currentPage}`;
-
-    if (formatedValues.city) {
-      url += `$`
+    if (values.city) {
+      url += `&by_city=${values.city}`;
     }
 
-    fetch(`?by_city=${city}&by_state=${state}`)
+    if (values.state) {
+      url+= `&by_state=${values.state}`;
+    }
+
+    if (values.postal) {
+      url+= `&by_postal=${values.postal}`;
+    }
+
+    fetch(url)
       .then(response => response.json())
       .then(breweries => {
         console.log(breweries);
         this.setState({
-          breweries: {
-            location: { zipcode: postal },
-            list: breweries
+          formData: {
+            city: values.city,
+            state: values.state,
+            postal: values.postal
           },
-          view: { name: 'list-breweries', params: {} }
-        })
-      })
+          breweryList: breweries
+      });
+    })
       .catch(error => console.error(error));
   }
 
-  getBreweriesByPostal(postal) {
-    fetch(`${this.breweryApiUrl}?by_postal=${postal}`)
-      .then(response => response.json())
-      .then(breweries => this.setState(
-        {
-          breweries: {
-            location: { zipcode: postal },
-            list: breweries
-          },
-          view: { name: 'list-breweries', params: {} }
-        }
-      ))
-      .catch(error => console.error(error));
-  }
 
-  findBreweriesByName(name) {
-    fetch(`${this.breweryApiUrl}?by_name=${name}`)
-      .then(response => response.json())
-      .then(breweries => this.setState(
-          {
-            breweries: { keyword: name },
-            view: { name: 'list-breweries', params: {} }
-          }
-      ))
-      .catch(error => console.error(error));
-  }
+  // findBreweriesByName(name) {
+  //   fetch(`${this.breweryApiUrl}?by_name=${name}`)
+  //     .then(response => response.json())
+  //     .then(breweries => this.setState(
+  //         {
+  //           breweries: { keyword: name },
+  //           view: { name: 'list-breweries', params: {} }
+  //         }
+  //     ))
+  //     .catch(error => console.error(error));
+  // }
 
   render() {
-    return 'hello'
+    const breweriesEl = this.state.breweryList.map(brewery => {
+      return <BreweryListItem key={brewery.id} breweryInfo={brewery} setView={this.props.setView} />
+    })
+
+    return (
+      <div className="brewery-list-container">
+        <h1>Breweries in {this.state.formData.city}</h1>
+        {breweriesEl}
+      </div>
+    )
   }
 }
 
