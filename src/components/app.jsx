@@ -10,6 +10,7 @@ import RecipeForm from './recipe-form';
 import RecipeList from './recipe-list';
 import RecipeDetails from './recipe-details';
 
+import { Container, Typography, Box, Grid } from '@material-ui/core';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -38,11 +39,6 @@ class App extends React.Component {
     let content = null;
 
     switch (view) {
-      case 'starting-page':
-        content = <StartingPage
-          setView={this.setView}
-        />;
-        break;
       case 'homepage':
         content = <Homepage
           setView={this.setView}
@@ -88,12 +84,36 @@ class App extends React.Component {
 
   render() {
     const bodyContent = this.determineView(this.state.view.name);
-    console.log(bodyContent)
+
+    if (this.state.view.name === 'starting-page') {
+      return (
+        <Container maxWidth="xl" className="starting-page">
+          <StartingPage setView={this.setView}/>
+        </Container>
+      )
+    }
+
     return (
-      <div className={`${this.state.view.name} content-container`}>
-        <Header />
-        {bodyContent}
-      </div>
+      <>
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          className={`${this.state.view.name} content`}
+        >
+          <Grid item xs={12}>
+            <Box>
+              <Header />
+            </Box>
+            <Box>
+              {bodyContent}
+            </Box>
+          </Grid>
+          <Footer setView={this.setView} />
+        </Grid>
+      </>
     )
   }
 }
