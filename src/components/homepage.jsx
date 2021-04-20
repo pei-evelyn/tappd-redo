@@ -21,13 +21,13 @@ const Homepage = props => {
       alignItems="center"
       justifyContent="center"
     >
-      <Box fontWeight={500}>
-        <Typography variant="h2">
+      <Box mb={2}>
+        <Typography variant="h3" fontWeight={500}>
           Let's grab a drink.
         </Typography>
       </Box>
       <Box textAlign="center">
-        <Box mb={1}>
+        <Box mb={2}>
           <Button
             onClick={() => props.setView('search-recipes', {})}
             variant="contained"
@@ -37,7 +37,7 @@ const Homepage = props => {
             Stay In
           </Button>
         </Box>
-        <Box mt={1}>
+        <Box mt={2}>
           <Button
             onClick={() => props.setView('search-breweries', {})}
             variant="contained"

@@ -83,7 +83,7 @@ li {
 }
 
 .homepage {
-  background-image: linear-gradient(#ffffff99, #ffffff33), url('../images/home-bg.jpg');
+  background-image: linear-gradient(#ffffffc2, #ffffff7c), url('../images/home-bg.jpg');
 }
 
 .search-breweries {
