@@ -1,31 +1,35 @@
 import React from 'react';
-import { Typography, Box, Button, Container } from '@material-ui/core';
+import { Typography, Box, Button } from '@material-ui/core';
 
 const Homepage = props => {
   return (
-    <Container maxWidth="lg">
-      <Typography variant="h1">
+    <Box textAlign="center">
+      <Typography variant="h2">
         Let's grab a drink.
       </Typography>
-      <Box>
-        <Button
-          onClick={() => props.setView('search-recipes', {})}
-          variant="contained"
-          color="primary"
-          size="medium"
-        >
-          Stay In
-        </Button>
-        <Button
-          onClick={() => props.setView('search-breweries', {})}
-          variant="contained"
-          color="primary"
-          size="medium"
-        >
-          Go Out
-        </Button>
+      <Box textAlign="center">
+        <Box mb={1}>
+          <Button
+            onClick={() => props.setView('search-recipes', {})}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            Stay In
+          </Button>
+        </Box>
+        <Box mt={1}>
+          <Button
+            onClick={() => props.setView('search-breweries', {})}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            Go Out
+          </Button>
+        </Box>
       </Box>
-    </Container>
+    </Box>
   );
 }
 

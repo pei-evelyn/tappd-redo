@@ -1,7 +1,33 @@
 import React from 'react';
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import HomeIcon from '@material-ui/icons/Home';
+import LocalBarIcon from '@material-ui/icons/LocalBar';
+
+const useStyles = makeStyles({
+  stickyBottom: {
+    width: '100%',
+    position: 'fixed',
+    bottom: 0,
+  },
+});
 
 const FooterNav = props => {
-  return 'footer'
+  const classes = useStyles();
+
+  return (
+    <BottomNavigation
+      className={classes.stickyBottom}
+      showLabels
+      onChange={(event, newValue) => {
+      console.log(newValue, event)
+    }}>
+      <BottomNavigationAction label="Recipes" icon={<MenuBookIcon />} />
+      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+      <BottomNavigationAction label="Breweries" icon={<LocalBarIcon />} />
+    </BottomNavigation>
+  )
 }
 
 export default FooterNav;
