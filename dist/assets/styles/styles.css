@@ -28,6 +28,10 @@ li {
   min-height: 100vh;
 }
 
+.back-arrow {
+  cursor: pointer;
+}
+
 .homepage-title {
   font-family: 'Playfair Display', serif;
   font-weight: 600 !important;
@@ -38,6 +42,7 @@ li {
   font-family: 'Pattaya', cursive;
   font-size: 1.5rem;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .header-container {

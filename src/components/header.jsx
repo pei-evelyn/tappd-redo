@@ -31,7 +31,7 @@ class Header extends React.Component {
             left={30}
             top={18}
           >
-            <ArrowBackIosIcon />
+            <ArrowBackIosIcon className="back-arrow" />
           </Box>
           <Box
             position="absolute"
