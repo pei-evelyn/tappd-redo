@@ -1,11 +1,12 @@
 import React from 'react';
-import { Typography, Box, Button } from '@material-ui/core';
+import { Typography, Box, Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   fullHeight: {
     height: '100%',
     minHeight: '85vh',
+    width: '100%',
   }
 });
 
@@ -21,18 +22,25 @@ const Homepage = props => {
       alignItems="center"
       justifyContent="center"
     >
-      <Box mb={2}>
-        <Typography variant="h3" fontWeight={500}>
-          Let's grab a drink.
-        </Typography>
+      <Box mb={3}>
+        <Container maxWidth="md">
+          <Box
+            component="h3"
+            fontWeight={500}
+            className="homepage-title"
+          >
+            Let's grab a drink.
+          </Box>
+        </Container>
       </Box>
-      <Box textAlign="center">
+      <Box textAlign="center" width="66%">
         <Box mb={2}>
           <Button
             onClick={() => props.setView('search-recipes', {})}
             variant="contained"
-            color="primary"
+            color="default"
             size="large"
+            fullWidth
           >
             Stay In
           </Button>
@@ -41,8 +49,9 @@ const Homepage = props => {
           <Button
             onClick={() => props.setView('search-breweries', {})}
             variant="contained"
-            color="primary"
+            color="default"
             size="large"
+            fullWidth
           >
             Go Out
           </Button>

@@ -18,20 +18,39 @@ class App extends React.Component {
       view: {
         name: 'starting-page',
         params: {}
-      }
+      },
+      history: []
     };
     this.setView = this.setView.bind(this);
+    this.switchViewBack = this.switchViewBack.bind(this);
     this.determineView = this.determineView.bind(this);
   }
 
   // Methods related to VIEW setting
 
+  switchViewBack(name, params, oldHistory) {
+    this.setState(state => {
+      return ({
+        view: {
+          name: name,
+          params: params
+        },
+        history: oldHistory
+      });
+    });
+  }
+
   setView(name, params) {
-    this.setState({
-      view: {
-        name: name,
-        params: params
-      }
+    this.setState(state => {
+      const previousView = Object.assign({}, state.view);
+      const newHistory = state.history.concat(previousView);
+      return ({
+        view: {
+          name: name,
+          params: params
+        },
+        history: newHistory
+      });
     });
   }
 
@@ -105,11 +124,13 @@ class App extends React.Component {
         >
           <Grid item xs={12}>
             <Box>
-              <Header />
+              <Header
+                history={this.state.history}
+                switchViewBack={this.switchViewBack}
+                setView={this.setView}
+              />
             </Box>
-            <Box>
-              {bodyContent}
-            </Box>
+            {bodyContent}
           </Grid>
           <Footer setView={this.setView} />
         </Grid>
