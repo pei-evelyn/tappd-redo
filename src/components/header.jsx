@@ -1,36 +1,53 @@
 import React from 'react';
 import { Typography, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-// const useStyles = makeStyles({
-//   stickyTop: {
-//     width: '100%',
-//     position: 'fixed',
-//     top: 0,
-//   }
-// })
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleBackButton = this.handleBackButton.bind(this);
+  }
 
-const Header = props => {
-  // const classes = useStyles();
+  handleBackButton() {
+    let history = this.props.history;
+    if (history.length > 0) {
+      history = history.pop();
+    }
+    this.props.switchViewBack(history.name, history.params, this.props.history);
+  }
 
-  return (
-    <Box>
-      <Box display="inline">
-        <ArrowBackIosIcon />
-      </Box>
+  render() {
+    return (
       <Box
-        display="inline"
-        fontSize={20}
-        fontWeight={500}
-        textAlign="center"
+        display="flex"
+        justifyContent="space-around"
+        alignItems="center"
+        position="relative"
       >
-        <Typography>
-          TAPPD
-        </Typography>
+        <Box
+          onClick={() => this.handleBackButton()}
+          position="absolute"
+          left={30}
+          top={18}
+        >
+          <ArrowBackIosIcon />
+        </Box>
+        <Box
+          position="absolute"
+          right={30}
+          top={18}
+          onClick={() => this.props.setView('homepage', {})}
+        >
+          <Box
+            component="h3"
+            className="heading-name"
+          >
+            Tappd
+          </Box>
+        </Box>
       </Box>
-    </Box>
-  );
+    );
+  }
 }
 
 export default Header;

@@ -23,11 +23,23 @@ const FooterNav = props => {
       onChange={(event, newValue) => {
       console.log(newValue, event)
     }}>
-      <BottomNavigationAction label="Recipes" icon={<MenuBookIcon />} />
-      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-      <BottomNavigationAction label="Breweries" icon={<LocalBarIcon />} />
+      <BottomNavigationAction
+        label="Recipes"
+        icon={<MenuBookIcon />}
+        onClick={() => props.setView('search-recipes', {})}
+      />
+      <BottomNavigationAction
+        label="Home"
+        icon={<HomeIcon />}
+        onClick={() => props.setView('homepage', {})}
+      />
+      <BottomNavigationAction
+        label="Breweries"
+        icon={<LocalBarIcon />}
+        onClick={() => props.setView('search-breweries', {})}
+      />
     </BottomNavigation>
-  )
+  );
 }
 
 export default FooterNav;

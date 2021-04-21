@@ -23,21 +23,22 @@ const StartingPage = props => {
       className={classes.fullHeight}
     >
       <Grid item xs={6}>
-        <Box textAlign="center">
+        <Box textAlign="center" mb={1}>
           <i className="logo fas fa-glass-martini-alt"></i>
           <i className="logo fas fa-beer"></i>
         </Box>
-        <Box textAlign="center" mb={2} fontWeight={500}>
-          <Typography variant="h3">
+        <Box textAlign="center" mb={2}>
+          <Box component="h1" className="app-name">
             Tappd
-          </Typography>
+          </Box>
         </Box>
         <Box textAlign="center">
           <Button
             onClick={() => props.setView('homepage', {})}
             variant="contained"
-            color="primary"
+            color="default"
             size="large"
+            fullWidth
           >
             Let's Go
           </Button>
