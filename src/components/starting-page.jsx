@@ -23,6 +23,9 @@ const StartingPage = props => {
       className={classes.fullHeight}
     >
       <Grid item xs={6}>
+        <Box textAlign="center" position="relative">
+          <img className="logo-img" src="../../dist/assets/images/sparkles.png" alt=""/>
+        </Box>
         <Box textAlign="center" mb={1}>
           <i className="logo fas fa-glass-martini-alt"></i>
           <i className="logo fas fa-beer"></i>

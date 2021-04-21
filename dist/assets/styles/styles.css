@@ -22,6 +22,7 @@ li {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  overflow: auto;
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -39,10 +40,52 @@ li {
   font-weight: 500;
 }
 
+.header-container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 .search-title {
   font-family: 'Playfair Display', serif;
   font-size: 2.3rem;
   width: 70%;
+  text-align: center;
+}
+
+.recipes-title, .brewery-list-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  width: 80%;
+  text-align: center;
+  margin: 3.5rem auto 1.5rem;
+}
+
+.brewery-list-item {
+  margin-bottom: 1rem;
+}
+
+.details-container {
+  margin-top: 4rem;
+  width: 85%;
+}
+
+.details-paper {
+  padding: .8rem;
+  overflow: auto;
+  height: 82vh
+}
+
+.detail-image {
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+  margin: auto;
+}
+
+.brewery-link {
+  text-decoration: none;
 }
 
 .sticky-bottom {
@@ -58,6 +101,14 @@ li {
 .logo {
   font-size: 2.1rem;
   margin: 0.5rem;
+}
+
+.logo-img {
+  position: absolute;
+  width: 1.8rem;
+  height: 1.8rem;
+  left: 45px;
+  top: -18px;
 }
 
 .app-name {
@@ -78,31 +129,34 @@ li {
   align-items: center;
   justify-content: center;
 }
-/* .logo:first-child {
+
+.recipe-list-container {
+  margin-bottom: 4rem;
+}
+
+.recipe-list-image {
+  width: 100%;
+  height: 9rem;
+  object-fit: cover;
+}
+
+.no-breweries-container {
+  margin-top: 4.5rem;
+  text-align: center;
+  font-size: 1.8rem
+}
+
+.logo:first-child {
   transform: rotate(20deg);
 }
 
 .logo:last-child {
   transform: rotate(-20deg);
-} */
-
-.recipe-container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border-radius: .3rem;
-  box-shadow: 0 1px 8px 2px gray;
-  cursor: pointer;
 }
 
-.recipe-thumbnail {
-  width: 4rem;
-  height: 4rem;
-  object-fit: cover;
-}
+/* BG Images*/
 
 .starting-page {
-  /* background-image: url('../images/starting-page.jpg'); */
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -114,11 +168,11 @@ li {
 }
 
 .search-breweries {
-  background-image: linear-gradient( #ffffffb9, #ffffff69), url('../images/go-out-bg1.jpg');
+  background-image: linear-gradient( #ffffffd0, #ffffff93), url('../images/go-out-bg1.jpg');
 }
 
 .search-recipes {
-  background-image: linear-gradient( rgba(255, 255, 255, 0.808), rgba(255, 255, 255, 0.589)), url('../images/stay-in-bg.jpg');
+  background-image: linear-gradient( rgba(255, 255, 255, 0.877), rgba(255, 255, 255, 0.767)), url('../images/stay-in-bg.jpg');
 }
 
 .list-breweries {
@@ -127,4 +181,12 @@ li {
 
 .list-recipes {
   background-image: linear-gradient( rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.42)), url('../images/recipes-bg.jpg');
+}
+
+.recipe-details {
+  background-image: linear-gradient( rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.42)), url('../images/recipe-details.jpg');
+}
+
+.brewery-details {
+  background-image: linear-gradient( rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.42)), url('../images/brewrey-details.jpg');
 }

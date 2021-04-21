@@ -1,4 +1,13 @@
 import React from 'react';
+import {
+  Box,
+  Container,
+  ListItem,
+  ListItemText,
+  List,
+  Paper,
+  Typography
+} from '@material-ui/core';
 
 const RecipeDetails = props => {
   const recipe = props.recipe;
@@ -23,25 +32,47 @@ const RecipeDetails = props => {
   }
 
   const ingredientsEl = ingredients.map(ingr => {
-    return <li className="ingredient" key={ingr}>{ingr}</li>
+    return (
+      <ListItem>
+        <ListItemText className="ingredient" key={ingr}>{ingr}</ListItemText>
+      </ListItem>
+    )
   })
 
   return (
-    <div className="recipe-details-container">
-      <h1>{recipe.strDrink}</h1>
-      <img src={recipe.strDrinkThumb} alt={recipe.strDrink} />
-      <div className="ingredients-container">
-        <h3>Ingredients</h3>
-        <ul>
+  <Box className="details-container">
+    <Paper elevation={3} className="details-paper">
+      <Box mt={2} mb={2} textAlign="center">
+        <Typography variant="h4">
+          {recipe.strDrink}
+        </Typography>
+      </Box>
+      <Box className="recipe-img-detail" textAlign="center">
+        <img className="detail-image" src={recipe.strDrinkThumb} alt={recipe.strDrink} />
+      </Box>
+      <div>
+        <Box mt={2}>
+          <Typography variant="h5">
+            Ingredients:
+          </Typography>
+        </Box>
+        <List>
           {ingredientsEl}
-        </ul>
+        </List>
       </div>
-      <div className="directions-container">
-        <h3>Directions</h3>
-        <p>{recipe.strInstructions}</p>
-      </div>
-    </div>
-  )
+      <Box mt={2} mb={2}>
+        <Typography variant="h5">
+          Directions:
+        </Typography>
+        <Typography variant="subtitle1">
+          {recipe.strInstructions}
+        </Typography>
+      </Box>
+    </Paper>
+  </Box>
+
+  );
+
 }
 
 export default RecipeDetails;

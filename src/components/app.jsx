@@ -109,7 +109,23 @@ class App extends React.Component {
         <Container maxWidth="xl" className="starting-page">
           <StartingPage setView={this.setView}/>
         </Container>
-      )
+      );
+    }
+
+    if (this.state.view.name === 'list-recipes' || this.state.view.name === 'list-breweries') {
+      return (
+        <Container maxWidth="xl" className={`${this.state.view.name} content`}>
+          <Box>
+            <Header
+              history={this.state.history}
+              switchViewBack={this.switchViewBack}
+              setView={this.setView}
+            />
+            </Box>
+          {bodyContent}
+          <Footer setView={this.setView} />
+        </Container>
+      );
     }
 
     return (
@@ -135,7 +151,7 @@ class App extends React.Component {
           <Footer setView={this.setView} />
         </Grid>
       </>
-    )
+    );
   }
 }
 

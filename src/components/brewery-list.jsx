@@ -1,6 +1,7 @@
 import React from 'react';
 import BreweryListItem from './brewery-list-item';
-import { Container, Typography, Box } from '@material-ui/core';
+import { Container, Typography, Box, Button } from '@material-ui/core';
+import Pagination from '@material-ui/lab/Pagination';
 
 class BreweryList extends React.Component {
   constructor(props) {
@@ -53,32 +54,45 @@ class BreweryList extends React.Component {
       .catch(error => console.error(error));
   }
 
-
-  // findBreweriesByName(name) {
-  //   fetch(`${this.breweryApiUrl}?by_name=${name}`)
-  //     .then(response => response.json())
-  //     .then(breweries => this.setState(
-  //         {
-  //           breweries: { keyword: name },
-  //           view: { name: 'list-breweries', params: {} }
-  //         }
-  //     ))
-  //     .catch(error => console.error(error));
-  // }
+  getNextPageData(event, page) {
+    console.log(event, page)
+    // this.setState({
+    //   currentPage: page
+    // })
+  }
 
   render() {
     const breweriesEl = this.state.breweryList.map(brewery => {
       return <BreweryListItem key={brewery.id} breweryInfo={brewery} setView={this.props.setView} />
     })
 
+    if (!this.state.breweryList.length) {
+      return (
+        <Container className="no-breweries-container">
+          <Box>No breweries found.</Box>
+          <Box>Please try again.</Box>
+          <Box>
+            <Button
+              onClick={() => this.props.setView('search-breweries', {})}
+              color="default"
+            >
+              Search
+            </Button>
+          </Box>
+        </Container>
+      )
+    }
     return (
       <Container maxWidth="sm">
-        <Typography variant="h2" gutterBottom>
+        <Box variant="h2" className="brewery-list-title">
           {this.state.formData.city || this.state.formData.postal} Breweries
-        </Typography>
+        </Box>
         <Box>
           {breweriesEl}
         </Box>
+        {/* <Box>
+          <Pagination onChange={(event, page) => this.getNextPageData(event, page)} />
+        </Box> */}
       </Container>
     )
   }
