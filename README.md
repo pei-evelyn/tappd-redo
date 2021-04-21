@@ -39,6 +39,6 @@ Try the application live at [https://pei-evelyn.github.io/tappd-redo/](https://p
     ```
  2. Install all packages used in project.
 
-  ```shell
-  npm install
-  ```
+    ```shell
+    npm install
+    ```
