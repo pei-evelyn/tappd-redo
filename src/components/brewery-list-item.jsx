@@ -16,6 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const BreweryListItem = props => {
   return (
     <Card
+      className="brewery-list-item"
       variant="outlined"
       onClick={() => props.setView('brewery-details', props.breweryInfo)}
     >

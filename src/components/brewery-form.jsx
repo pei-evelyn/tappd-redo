@@ -69,21 +69,21 @@ const BreweryForm = props => {
         Find Breweries
       </Box>
       <form onSubmit={formik.handleSubmit}>
-        <FormGroup mb={2}>
-          <Box>
+        <FormGroup >
+          <Box mb={2}>
             <TextField
               fullWidth
               id="city"
               name="city"
               label="Enter City"
-              variant="outlined"
+              variant="filled"
               value={formik.values.city}
               onChange={formik.handleChange}
             />
           </Box>
         </FormGroup>
         <FormGroup>
-          <FormControl variant="outlined">
+          <FormControl variant="filled">
             <InputLabel id="state">Select State</InputLabel>
             <Select
               labelId="state"
@@ -106,7 +106,7 @@ const BreweryForm = props => {
             id="postal"
             name="postal"
             label="Enter Postal"
-            variant="outlined"
+            variant="filled"
             value={formik.values.postal}
             onChange={formik.handleChange}
           />

@@ -18,31 +18,33 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Box
-        display="flex"
-        justifyContent="space-around"
-        alignItems="center"
-        position="relative"
-      >
+      <Box className="header-container">
         <Box
-          onClick={() => this.handleBackButton()}
-          position="absolute"
-          left={30}
-          top={18}
-        >
-          <ArrowBackIosIcon />
-        </Box>
-        <Box
-          position="absolute"
-          right={30}
-          top={18}
-          onClick={() => this.props.setView('homepage', {})}
+          display="flex"
+          justifyContent="space-around"
+          alignItems="center"
+          position="relative"
         >
           <Box
-            component="h3"
-            className="heading-name"
+            onClick={() => this.handleBackButton()}
+            position="absolute"
+            left={30}
+            top={18}
           >
-            Tappd
+            <ArrowBackIosIcon />
+          </Box>
+          <Box
+            position="absolute"
+            right={30}
+            top={18}
+            onClick={() => this.props.setView('starting-page', {})}
+          >
+            <Box
+              component="h3"
+              className="heading-name"
+            >
+              Tappd
+            </Box>
           </Box>
         </Box>
       </Box>

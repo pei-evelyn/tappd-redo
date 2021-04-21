@@ -1,6 +1,7 @@
 import React from 'react';
 import RecipeListItem from './recipe-list-item';
-
+import { Box, Container } from '@material-ui/core';
+import Pagination from '@material-ui/lab/Pagination';
 class RecipeList extends React.Component {
   constructor(props){
     super(props);
@@ -58,6 +59,13 @@ class RecipeList extends React.Component {
     return drinkIds;
   }
 
+  getNextPageData(page) {
+    this.setState({
+      currentPage: page
+    });
+    this.getPaginatedRecipes(this.state.idList);
+  }
+
   getPaginatedRecipes(ids) {
     const currentPage = this.state.currentPage;
 
@@ -93,10 +101,18 @@ class RecipeList extends React.Component {
     }
 
     return (
-      <div className="recipe-list-container">
-        <h1>{(this.state.formData.isNonAlcoholic ? 'Non-Alcoholic' : this.state.formData.alcoholType)} Recipes</h1>
+      <Box className="recipe-list-container">
+        <Box component="h2" className="recipes-title">
+          {(this.state.formData.isNonAlcoholic ? 'Non-Alcoholic' : this.state.formData.alcoholType)} Recipes
+        </Box>
         {recipes}
-      </div>
+        {/* <Box>
+          <Pagination
+            count={Math.ceil(this.state.idList / 10)}
+            onChange={(event, page) => this.getNextPageData(page)}
+          />
+        </Box> */}
+      </Box>
     )
   }
 }
