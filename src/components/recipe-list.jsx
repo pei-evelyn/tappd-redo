@@ -36,7 +36,6 @@ class RecipeList extends React.Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         const drinkIds = this.grabIdsFromDrinkList(data.drinks);
         this.getPaginatedRecipes(drinkIds);
         this.setState({
@@ -51,7 +50,6 @@ class RecipeList extends React.Component {
   }
 
   grabIdsFromDrinkList(drinks) {
-    console.log(drinks)
     const drinkIds = [];
     drinks.forEach(drink => {
       drinkIds.push(drink.idDrink);
@@ -73,7 +71,6 @@ class RecipeList extends React.Component {
     const end = (currentPage * 10);
     const displayedIds = ids.slice(start, end);
 
-    console.log(displayedIds);
     displayedIds.forEach(id => this.getRecipeWithId(id));
   }
 
@@ -81,7 +78,6 @@ class RecipeList extends React.Component {
     fetch(`${this.recipeApiUrl}lookup.php?i=${id}`)
       .then(response => response.json())
       .then(recipe => {
-        console.log(recipe.drinks[0])
         this.setState(state => {
           return {
           displayedDrinks: state.displayedDrinks.concat(recipe.drinks[0])

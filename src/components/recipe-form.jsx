@@ -47,7 +47,6 @@ const RecipeForm = props => {
       isNonAlcoholic: false
     },
     onSubmit: (values) => {
-      console.log(values)
       props.setView('list-recipes', values);
     },
   });
@@ -110,38 +109,6 @@ const RecipeForm = props => {
       </form>
     </Box>
   )
-  // return (
-  //   <div>
-  //     <h1 className="search-recipes-heading">Search Recipes</h1>
-  //     <div className="recipe-form">
-  //       <Formik
-  //         initialValues={{
-  //           alcoholType: '',
-  //           isNonAlcoholic: false
-  //         }}
-  //         onSubmit={(values) => {
-  //           console.log(values)
-  //           props.setView('list-recipes', values);
-  //         }}
-  //       >
-  //         <Form>
-  //           <label htmlFor="isAlcoholic">Non-Alcoholic?</label>
-  //           <Field type="checkbox" name="isNonAlcoholic" />
-
-  //           <h3>OR</h3>
-
-  //           <label htmlFor="alcoholType">Alcohol Type</label>
-  //           <Field as="select" name="alcoholType" id="alcoholType">
-  //             <option value="" disabled>Select one</option>
-  //             {alcoholOptions}
-  //           </Field>
-
-  //           <button type="submit">Search Recipes</button>
-  //         </Form>
-  //       </Formik>
-  //     </div>
-  //   </div>
-  // )
 }
 
 export default RecipeForm;

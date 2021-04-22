@@ -21,9 +21,7 @@ const FooterNav = props => {
     <BottomNavigation
       className={classes.stickyBottom}
       showLabels
-      onChange={(event, newValue) => {
-      console.log(newValue, event)
-    }}>
+    >
       <BottomNavigationAction
         label="Recipes"
         icon={<MenuBookIcon />}

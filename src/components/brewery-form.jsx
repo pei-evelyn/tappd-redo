@@ -47,7 +47,6 @@ const BreweryForm = props => {
       postal: '',
     },
     onSubmit: (values) => {
-      console.log(values)
       props.setView('list-breweries', values);
     },
   });

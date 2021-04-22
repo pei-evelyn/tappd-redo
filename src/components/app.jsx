@@ -26,8 +26,6 @@ class App extends React.Component {
     this.determineView = this.determineView.bind(this);
   }
 
-  // Methods related to VIEW setting
-
   switchViewBack(name, params, oldHistory) {
     this.setState(state => {
       return ({

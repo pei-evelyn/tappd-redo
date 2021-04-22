@@ -54,12 +54,12 @@ class BreweryList extends React.Component {
       .catch(error => console.error(error));
   }
 
-  getNextPageData(event, page) {
-    console.log(event, page)
+  // getNextPageData(event, page) {
+    // console.log(event, page)
     // this.setState({
     //   currentPage: page
     // })
-  }
+  // }
 
   render() {
     const breweriesEl = this.state.breweryList.map(brewery => {
