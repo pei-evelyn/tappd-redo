@@ -113,6 +113,8 @@ li {
   height: 1.8rem;
   left: 45px;
   top: -18px;
+  background-image: url('../images/sparkles.png');
+  background-size: cover;
 }
 
 .app-name {
