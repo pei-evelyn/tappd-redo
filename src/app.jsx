@@ -1,16 +1,18 @@
 import React from 'react';
-import Header from './header';
-import Footer from './footer-nav';
-import StartingPage from './starting-page'
-import Homepage from './homepage';
-import BreweryForm from './brewery-form';
-import BreweryList from './brewery-list';
-import BreweryDetails from './brewery-details';
-import RecipeForm from './recipe-form';
-import RecipeList from './recipe-list';
-import RecipeDetails from './recipe-details';
-
+import ReactTransitionGroup from 'react-transition-group';
 import { Container, Typography, Box, Grid } from '@material-ui/core';
+
+import Header from './components/header';
+import Footer from './components/footer-nav';
+import StartingPage from './components/starting-page'
+import Homepage from './components/homepage';
+import BreweryForm from './components/brewery-form';
+import BreweryList from './components/brewery-list';
+import BreweryDetails from './components/brewery-details';
+import RecipeForm from './components/recipe-form';
+import RecipeList from './components/recipe-list';
+import RecipeDetails from './components/recipe-details';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -127,28 +129,15 @@ class App extends React.Component {
     }
 
     return (
-      <>
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justify="center"
-          className={`${this.state.view.name} content`}
-        >
-          <Grid item xs={12}>
-            <Box>
-              <Header
-                history={this.state.history}
-                switchViewBack={this.switchViewBack}
-                setView={this.setView}
-              />
-            </Box>
-            {bodyContent}
-          </Grid>
-          <Footer setView={this.setView} />
-        </Grid>
-      </>
+      <Container className={`${this.state.view.name} content`} maxWidth="xl">
+        <Header
+          history={this.state.history}
+          switchViewBack={this.switchViewBack}
+          setView={this.setView}
+        />
+        {bodyContent}
+        <Footer setView={this.setView} />
+      </Container>
     );
   }
 }

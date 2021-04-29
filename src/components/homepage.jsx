@@ -1,39 +1,28 @@
 import React from 'react';
-import { Typography, Box, Button, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  fullHeight: {
-    height: '100%',
-    minHeight: '85vh',
-    width: '100%',
-  }
-});
+import { Box, Button, Container } from '@material-ui/core';
 
 const Homepage = props => {
-  const classes = useStyles();
-
   return (
     <Box
       textAlign="center"
-      className={classes.fullHeight}
       display="flex"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
+      height="100%"
+      width="100%"
     >
       <Box mb={3}>
-        <Container maxWidth="md">
-          <Box
-            component="h3"
-            fontWeight={500}
-            className="homepage-title"
-          >
-            Let's grab a drink.
-          </Box>
-        </Container>
+        <Box
+          component="h3"
+          fontWeight={600}
+          fontFamily="Playfair Display"
+          fontSize="3.2rem"
+        >
+          Let's grab a drink.
+        </Box>
       </Box>
-      <Box textAlign="center" width="66%">
+      <Box textAlign="center" width="66%" maxWidth="400px">
         <Box mb={2}>
           <Button
             onClick={() => props.setView('search-recipes', {})}

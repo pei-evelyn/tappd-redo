@@ -31,11 +31,11 @@ li {
   cursor: pointer;
 }
 
-.homepage-title {
+/* .homepage-title {
   font-family: 'Playfair Display', serif;
   font-weight: 600 !important;
   font-size: 3rem;
-}
+} */
 
 .heading-name {
   font-family: 'Pattaya', cursive;
@@ -108,13 +108,8 @@ li {
 }
 
 .logo-img {
-  position: absolute;
-  width: 1.8rem;
-  height: 1.8rem;
-  left: 45px;
-  top: -18px;
-  background-image: url('../images/sparkles.png');
   background-size: cover;
+  background-image: url('../images/sparkles.png');
 }
 
 .app-name {
