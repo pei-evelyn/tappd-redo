@@ -1,41 +1,46 @@
 import React from 'react';
-import { Typography, Box, Button, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  fullHeight: {
-    minHeight: '100vh',
-    height: '100%',
-  },
-});
+import { Box, Button } from '@material-ui/core';
 
 
 const StartingPage = props => {
-  const classes = useStyles();
-
   return (
-    <Grid
-      container
-      spacing={0}
-      direction="column"
+    <Box
+      height="100%"
+      minHeight="100vh"
+      width="100%"
+      display="flex"
+      justifyContent="center"
       alignItems="center"
-      justify="center"
-      className={classes.fullHeight}
     >
-      <Grid item xs={6}>
-        <Box textAlign="center" position="relative">
-          <Box className="logo-img"></Box>
+      <Box>
+        <Box>
+          <Box position="relative">
+            <Box
+              width="1.8rem"
+              height="1.8rem"
+              position="absolute"
+              className="logo-img"
+              top={-25}
+              left={50}
+            >
+            </Box>
+          </Box>
+          <Box textAlign="center">
+            <i className="logo fas fa-glass-martini-alt"></i>
+            <i className="logo fas fa-beer"></i>
+          </Box>
         </Box>
-        <Box textAlign="center" mb={1}>
-          <i className="logo fas fa-glass-martini-alt"></i>
-          <i className="logo fas fa-beer"></i>
-        </Box>
-        <Box textAlign="center" mb={2}>
-          <Box component="h1" className="app-name">
+        <Box mb={2}>
+          <Box
+            component="h1"
+            fontFamily="Pattaya"
+            fontSize="3.2rem"
+            fontWeight={500}
+          >
             Tappd
           </Box>
         </Box>
-        <Box textAlign="center">
+        <Box mt={1}>
           <Button
             onClick={() => props.setView('homepage', {})}
             variant="contained"
@@ -46,9 +51,9 @@ const StartingPage = props => {
             Let's Go
           </Button>
         </Box>
-      </Grid>
-    </Grid>
-  )
+      </Box>
+    </Box>
+  );
 }
 
 export default StartingPage;
